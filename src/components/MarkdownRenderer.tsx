@@ -13,8 +13,8 @@ import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-markup'; // For XML/HTML
 
 // Initialize Prism for syntax highlighting
-marked.setOptions({
-  highlight: function(code, lang) {
+marked.use({
+  highlight: (code: string, lang: string) => {
     const language = Prism.languages[lang] || Prism.languages.javascript;
     return Prism.highlight(code, language, lang);
   },
