@@ -53,11 +53,11 @@ const Footer = () => (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="text-center md:text-left mb-4 md:mb-0">
-          <p className="text-lg font-semibold text-gray-800">MCP Server</p>
+          <p className="text-lg font-semibold text-gray-800">MCP Server Hub</p>
           <p className="text-sm text-gray-600">Model Context Protocol</p>
         </div>
         <div className="text-sm text-gray-600">
-          <p>&copy; {new Date().getFullYear()} MCP Server. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} MCP Server Hub. All rights reserved.</p>
         </div>
       </div>
     </div>

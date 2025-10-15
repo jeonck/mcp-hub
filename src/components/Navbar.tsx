@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl font-bold text-gray-800">
-              <span className="text-indigo-500">MCP</span> Server
+              <span className="text-indigo-500">MCP</span> Server Hub
             </Link>
           </div>
           
