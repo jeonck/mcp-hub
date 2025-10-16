@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
@@ -13,13 +14,13 @@ import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-markup'; // For XML/HTML
 
 // Initialize Prism for syntax highlighting
-marked.use({
-  highlight: (code: string, lang: string) => {
+marked.use(markedHighlight({
+  langPrefix: 'language-',
+  highlight(code, lang) {
     const language = Prism.languages[lang] || Prism.languages.javascript;
     return Prism.highlight(code, language, lang);
-  },
-  langPrefix: 'language-',
-});
+  }
+}));
 
 const MarkdownRenderer = () => {
   const { fileName } = useParams();

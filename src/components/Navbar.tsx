@@ -1,17 +1,56 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'react-feather';
 
+interface NavItem {
+  title: string;
+  to: string;
+}
+
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+}
+
+interface DropdownProps {
+  title: string;
+  items: NavItem[];
+}
+
+interface NestedDropdownProps {
+  title: string;
+  categories: { [key: string]: NavItem[] };
+}
+
+interface MobileNavLinkProps {
+  to: string;
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+interface MobileDropdownProps {
+  title: string;
+  items: NavItem[];
+  closeMenu: () => void;
+}
+
+interface MobileNestedDropdownProps {
+  title: string;
+  categories: { [key: string]: NavItem[] };
+  closeMenu: () => void;
+}
+
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const coreConcepts = [
+  const coreConcepts: NavItem[] = [
     { title: 'MCP란?', to: '/concepts/what-is-mcp' },
     { title: 'AI 에이전트의 부상', to: '/concepts/ai-agents' },
     { title: '보안 및 거버넌스', to: '/concepts/security' },
   ];
 
-  const serverCategories = {
+  const serverCategories: { [key: string]: NavItem[] } = {
     '개발 워크플로우': [
       { title: 'GitHub Server', to: '/servers/github' },
     ],
@@ -73,13 +112,13 @@ const Navbar = () => {
 
 // --- Dropdown Components ---
 
-const NavLink = ({ to, children }) => (
+const NavLink = ({ to, children }: NavLinkProps) => (
   <Link to={to} className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">
     {children}
   </Link>
 );
 
-const Dropdown = ({ title, items }) => {
+const Dropdown = ({ title, items }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
@@ -99,7 +138,7 @@ const Dropdown = ({ title, items }) => {
   );
 };
 
-const NestedDropdown = ({ title, categories }) => {
+const NestedDropdown = ({ title, categories }: NestedDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
@@ -126,13 +165,13 @@ const NestedDropdown = ({ title, categories }) => {
 
 // --- Mobile Menu Components ---
 
-const MobileNavLink = ({ to, children, onClick }) => (
+const MobileNavLink = ({ to, children, onClick }: MobileNavLinkProps) => (
   <Link to={to} onClick={onClick} className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">
     {children}
   </Link>
 );
 
-const MobileDropdown = ({ title, items, closeMenu }) => {
+const MobileDropdown = ({ title, items, closeMenu }: MobileDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
@@ -150,7 +189,7 @@ const MobileDropdown = ({ title, items, closeMenu }) => {
   );
 };
 
-const MobileNestedDropdown = ({ title, categories, closeMenu }) => {
+const MobileNestedDropdown = ({ title, categories, closeMenu }: MobileNestedDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>

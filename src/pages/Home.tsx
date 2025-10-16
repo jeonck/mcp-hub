@@ -1,7 +1,12 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, GitHub, Play, Database, Cloud, Search } from 'react-feather';
+
+interface ServerCardProps {
+  path: string;
+  title: string;
+  icon: React.ReactElement; // React.ReactElement for JSX elements
+}
 
 const servers = [
   {
@@ -68,7 +73,7 @@ const Home = () => {
   );
 };
 
-const ServerCard = ({ path, title, icon }) => (
+const ServerCard = ({ path, title, icon }: ServerCardProps) => (
   <Link to={path} className="block group">
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200/80 h-full flex flex-col p-8 items-center text-center">
       <div className="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 text-white mb-6">
